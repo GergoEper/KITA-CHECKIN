@@ -2,9 +2,9 @@ const router = require("express").Router();
 const User = require("../models/User.model");
 const bcrypt = require("bcrypt");
 
-/* GET Register page */
+//GET Register page 
 router.get("/signup", (req, res, next) => {
-    res.render("signup");
+res.render("signup");
 });
 
 router.get("/login", (req, res, next) => {
@@ -62,9 +62,19 @@ router.post("/login", (req, res, next) => {
             return
         }
         // if the username is correct -> check the password from the input against the hash in the db
-        if(bcrypt.compareSync(password, userFromDb.password)){
+        if(bcrypt.compareSync(password, userFromDb.password) && userFromDb.role === 'parent'){
+            console.log(userFromDb)
             req.session.user = userFromDb;
-            res.redirect("/profile");
+            res.redirect("/profileParent");
+
+            
+        } 
+        if(bcrypt.compareSync(password, userFromDb.password) && userFromDb.role === 'admin'){
+            console.log(userFromDb)
+            req.session.user = userFromDb;
+            res.redirect("/profileAdmin");
+
+            
         } else {
             // if that is not matching password is in correct.
             

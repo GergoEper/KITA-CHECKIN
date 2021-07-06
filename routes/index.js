@@ -144,4 +144,42 @@ router.post('/child/:id/edit', (req, res, next) => {
 		})
 });
 
+router.get("/addClassroom", loginCheck(), (req, res, next) =>{
+  res.render("addClassroom");
+});
+
+router.post('/child/:id/status', (req, res, next) => {
+	const childId = req.params.id;
+  console.log('this is to see the status', req.body.status)
+	const {status} = req.body;
+  console.log('this is to see the status after ', req.body)
+  if ( req.body.status === 'out') {
+    Child.findByIdAndUpdate(childId, {
+      status: 'in',
+    })
+    .then(() => {
+      res.redirect("/profileAdmin");
+    })
+    .catch(err => {
+      console.log(err);
+    })
+  }
+
+  if (req.body.status === 'in') {
+	Child.findByIdAndUpdate(childId, {
+		status: 'out',
+	})
+	.then(() => {
+		res.redirect("/profileAdmin");
+	})
+	.catch(err => {
+		console.log(err);
+	})
+  }
+});
+
+
+
+
+
 module.exports = router;

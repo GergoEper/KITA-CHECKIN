@@ -60,7 +60,7 @@ console.log(req.body)
            
            Child.create(req.body)
             .then(createdChild => {
-                res.redirect('/profileAdmin')
+                res.redirect('/profileAdmin', { newChild: createdChild})
             })
             .catch(err => {
                 next(err);

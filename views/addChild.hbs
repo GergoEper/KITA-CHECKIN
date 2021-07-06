@@ -1,0 +1,47 @@
+<p>Create a child in the DB</p>
+
+<form action="/addChild" method="POST">
+
+<label for="alias">Add a unique alias</label>
+<input type="text" name="alias" id="alias">
+
+<label for="firstname">Firstname</label>
+<input type="text" name="firstname" id="firstname">
+
+<label for="lastname">Lastname</label>
+<input type="text" name="lastname" id="lastname">
+
+<label for="birthdate">birthdate</label>
+<input type="date" name="birthdate" id="birthdate">
+
+{{!-- <select name="parent">
+
+		{{#each  }}
+    
+			<option value="{{_id}}">{{name}}</option>
+		{{/each}}
+
+</select>  --}}
+
+<p>Contact Address: </p>
+
+<label for="street">Street</label>
+<input type="text" name="street" id="street">
+
+<label for="houseNumber">Number of House</label>
+<input type="text" name="houseNumber" id="houseNumber">
+
+<label for="city">City</label>
+<input type="text" name="city" id="city">
+
+<label for="zipCode">zipCode</label>
+<input type="text" name="zipCode" id="zipCode">
+
+<label for="phoneNumber">Phone Number</label>
+<input type="number" name="phoneNumber" id="phoneNumber">
+
+<button type="submit">Create</button>
+
+</form>
+
+{{message}}

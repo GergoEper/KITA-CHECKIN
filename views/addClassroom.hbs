@@ -1,1 +1,23 @@
 <h2>Here you can create a classroom</h2>
+
+<form action="/login" method="POST">
+
+<label for="className">name of the class</label>
+<input type="text" name="className" id="className">
+
+<label for="teacher">Name of the teacher</label>
+<input type="text" name="teacher" id="teacher">
+
+<select name="child">
+
+		{{#each  }}
+    
+			<option value="{{_id}}">{{name}}</option>
+		{{/each}}
+
+</select> 
+
+
+<button type="submit">Login</button>
+
+</form>

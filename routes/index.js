@@ -35,7 +35,11 @@ router.get("/profileAdmin", loginCheck(), (req, res, next) =>{
   if(req.session.user.role === 'admin'){
     console.log('this is the cookie: ', req.cookies)
     const loggedInUser = req.session.user
-    res.render('profileAdmin', {user: loggedInUser});
+    console.log(loggedInUser)
+    Child.find()
+    .then(allChildren => {
+      res.render('profileAdmin', {childrenList: allChildren, user: loggedInUser });
+    })
   } else {
     res.redirect('/login')
   }

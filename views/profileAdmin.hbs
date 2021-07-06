@@ -1,6 +1,23 @@
-<h2>this is your Admin Profile</h2>
+<h2>This is your Admin Profile {{user.username}}</h2>
 
-{{user.username}}
+{{#each childrenList}}
+
+  <div>{{alias}}</div>
+  {{!-- <a href="/celebrities/{{_id}}">View Details</a>
+
+  <form action="/celebrities/{{_id}}/delete" method="POST">
+    <button type="submit">Delete Celebrity</button>
+  </form>
+
+
+  <button type="submit"><a href="/celebrities/{{_id}}/edit"> Edit Celebrity </a></button> --}}
+ 
+
+{{/each}}
+
+
+
+
 
 <div><a href="/addClassroom">Add a Classroom</a></div>
 <div><a href="/addChild">Add a Child</a></div>

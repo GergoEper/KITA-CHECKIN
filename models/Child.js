@@ -10,15 +10,21 @@ const childSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'User.model'
       }],
-    contactData: {
-        address: {
-            street: String, 
-            houseNumber: String,
-            city: String,
-            zipCode: Number
-        },
-        phoneNumber: String
-    },
+    // contactData: {
+    //     address: {
+    //         street: String, 
+    //         houseNumber: String,
+    //         city: String,
+    //         zipCode: Number
+    //     },
+    //     type: String, 
+    //     phoneNumber: String
+    // },
+    street: String, 
+    houseNumber: String,
+    city: String,
+    zipCode: Number,
+    phoneNumber: String, 
     status: {
         type: String,
         enum: ['in', 'out'],

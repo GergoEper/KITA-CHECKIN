@@ -71,37 +71,77 @@ console.log(req.body)
             })
         }
     })
-
-
-  //   //firstname: String,
-  //   lastname:  String,
-  //   birthdate: String,
-  //   parent: [{
-  //       type: Schema.Types.ObjectId,
-  //       ref: 'User.model'
-  //     }],
-  //   contactData: {
-  //       address: {
-  //           street: String, 
-  //           houseNumber: String,
-  //           city: String,
-  //           zipCode: Number
-  //       },
-  //       phoneNumber: { 
-  //       }
-  //   },
-  //   status: {
-  //       type: String,
-  //       enum: ['in', 'out'],
-  //       default: 'out', 
-  // //  }    
-
   res.redirect("/profileAdmin");
 });
+
+router.get('/child/:id', (req, res, next) => {
+	console.log(req.params.id);
+	const childId = req.params.id;
+	// get the book with the clicked id
+	Child.findById(childId)
+		//.populate('address')
+		.then(childFromDB => {
+			console.log(childFromDB);
+			// render the details view
+			res.render('childrenDetails', { childDetails: childFromDB });
+		})
+		.catch(err => {
+			console.log(err);
+		})
+});
+
+router.get('/child/:id/delete', (req, res, next) => {
+	console.log(req.params.id);
+	const childId = req.params.id;
+	// get the book with the clicked id
+	Child.findByIdAndDelete(childId)
+		//.populate('address')
+		.then(childFromDB => {
+			console.log(childFromDB);
+			// render the details view
+      res.redirect('/profileAdmin');
+		})
+		.catch(err => {
+			console.log(err);
+		})
+});
+
+
 
 
 router.post("/addClassroom", (req, res, next) => {
     res.redirect("/profileAdmin");
+});
+
+router.get('/child/:id/edit', (req, res, next) => {
+	// retrieve the book that should be edited	
+	const childId = req.params.id;
+	Child.findById(childId)
+		.then(childFromDB => {
+			console.log(childFromDB);
+			// render a form with the book details
+			res.render('childrenEdit', { child: childFromDB });
+		})
+});
+
+
+
+
+router.post('/child/:id/edit', (req, res, next) => {
+	const childId = req.params.id;
+	const { alias, firstname, lastname, birthdate } = req.body;
+	Child.findByIdAndUpdate(childId, {
+		alias,
+		firstname,
+		lastname,
+		birthdate
+	})
+		.then(() => {
+			res.redirect(`/child/${childId}`);
+		})
+		.catch(err => {
+			console.log(err);
+		})
 });
 
 module.exports = router;

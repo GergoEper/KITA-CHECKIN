@@ -1,17 +1,8 @@
 <h2>This is your Admin Profile {{user.username}}</h2>
 
 {{#each childrenList}}
-
-  <div>{{alias}}</div>
-  {{!-- <a href="/celebrities/{{_id}}">View Details</a>
-
-  <form action="/celebrities/{{_id}}/delete" method="POST">
-    <button type="submit">Delete Celebrity</button>
-  </form>
-
-
-  <button type="submit"><a href="/celebrities/{{_id}}/edit"> Edit Celebrity </a></button> --}}
- 
+<div><a href="/child/{{_id}}">{{alias}}</a></div>
+  
 
 {{/each}}
 

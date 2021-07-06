@@ -1,7 +1,7 @@
 const { Schema, model } = require("mongoose");
 
 // TODO: Please make sure you edit the user model to whatever makes sense in this case
-const userSchema = new Schema({
+const parentSchema = new Schema({
 
     firstname: String,
     lastname:  String,
@@ -23,6 +23,6 @@ const userSchema = new Schema({
     }
 });
 
-const Parent = model("Parent", userSchema);
+const Parent = model("Parent", parentSchema);
 
 module.exports = Parent;

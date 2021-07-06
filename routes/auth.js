@@ -62,14 +62,17 @@ router.post("/login", (req, res, next) => {
             return
         }
         // if the username is correct -> check the password from the input against the hash in the db
-        if(bcrypt.compareSync(password, userFromDb.password) && userFromDb.role === 'parent'){
-            console.log(userFromDb)
+        else if(bcrypt.compareSync(password, userFromDb.password) && userFromDb.role === 'parent'){
+            console.log('auth post login ', userFromDb)
+            console.log('session before assigning ', req.session)
+            // this is important because req.session is something you can access outside the method and we need it to store the data to assign it the next step.
             req.session.user = userFromDb;
-            res.redirect("/profileParent");
-
+            console.log('auth req session: ', req.session)
+            res.redirect(`/profileParent/${userFromDb._id}`);
+           // profileParent/${userFromDb._id}
             
         } 
-        if(bcrypt.compareSync(password, userFromDb.password) && userFromDb.role === 'admin'){
+        else if(bcrypt.compareSync(password, userFromDb.password) && userFromDb.role === 'admin'){
             console.log(userFromDb)
             req.session.user = userFromDb;
             res.redirect("/profileAdmin");

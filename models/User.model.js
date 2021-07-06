@@ -11,7 +11,8 @@ const userSchema = new Schema({
     type: String,
     enum: ['parent', 'teacher', 'admin'],
     default: 'parent', 
-  },
+  }
+ 
 });
 
 const User = model("User", userSchema);

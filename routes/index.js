@@ -67,4 +67,9 @@ router.get("/profileAdmin", loginCheck(), (req, res, next) =>{
 });
 
 
+router.get("/addClassroom", (req, res, next) => {
+  res.render("addClassroom");
+});
+
+
 module.exports = router;

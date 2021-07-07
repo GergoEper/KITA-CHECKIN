@@ -80,9 +80,9 @@ router.post("/login", (req, res, next) => {
 
             
         } else {
-            // if that is not matching password is in correct.
+            // if that is not matching password is incorrect.
             
-            res.render('/login',{message :  'invalid credentials'})
+            res.render('login',{message :  'invalid credentials'})
             return;
         }
     })

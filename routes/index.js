@@ -1,4 +1,4 @@
-const Parent = require("../models/Parent");
+
 const User = require("../models/User.model");
 const router = require("express").Router();
 const Child = require("../models/Child");
@@ -99,9 +99,9 @@ router.get('/child/:id', (req, res, next) => {
 	const childId = req.params.id;
 	// get the book with the clicked id
 	Child.findById(childId)
-		//.populate('address')
+//	.populate('parent')
 		.then(childFromDB => {
-			console.log(childFromDB);
+			console.log('Xxxxxxxxxxxxxxxx', childFromDB);
 			// render the details view
 			res.render('childrenDetails', { childDetails: childFromDB });
 		})
@@ -115,7 +115,7 @@ router.get('/child/:id/delete', (req, res, next) => {
 	const childId = req.params.id;
 	// get the book with the clicked id
 	Child.findByIdAndDelete(childId)
-		//.populate('address')
+		.populate('address')
 		.then(childFromDB => {
 			console.log(childFromDB);
 			// render the details view
@@ -176,6 +176,7 @@ router.post('/child/:id/status', (req, res, next) => {
       status: 'in',
     })
     .then(() => {
+
       res.redirect("/profileAdmin");
     })
     .catch(err => {
@@ -196,7 +197,29 @@ router.post('/child/:id/status', (req, res, next) => {
   }
 });
 
-
+router.post('/connectParent/:id', (req, res, next) => {
+  const {username} = req.body;
+  console.log('this is to see the body', req.params)
+  childId = req.params.id;
+    User.findOne({username: username})
+    .then(userFromDB => {
+      console.log('this is the user from DB:', userFromDB)
+      console.log('this is the userID from DB:', userFromDB._id)
+      console.log('this is the childId:', childId)
+			Child.findByIdAndUpdate(childId, {
+        "$push": { parent: userFromDB._id } 
+      })
+      .then(() => {
+      res.redirect(`/child/${childId}`);
+      })
+      .catch(err => {
+        console.log(err);
+      })
+		})
+    .catch(err => {
+      console.log(err);
+    })
+});
 
 
 

@@ -5,14 +5,28 @@
     <p>Firstname: {{firstname}}</p>
     <p>Lastname: {{lastname}}</p>
     <p>Birthdate: {{birthdate}}</p>
-    <a href=“/child/{{_id}}/edit”>Edit Childprofile :pencil2:</a>
-    <a href=“/child/{{_id}}/delete”>Delete Childprofile :x:</a>
-    <h3>Address: </h3>
-    {{!-- {{#with author}}
-        <p>{{name}} {{lastName}}</p>
-        <p>Nationality: {{nationality}}</p>
-        <img src=“{{pictureUrl}}” alt=“picture for {{lastName}}” height=“200px”>
-    {{/with}} --}}
+	<a href="/child/{{_id}}/edit">Edit Childprofile ✏️</a>
+	<a href="/child/{{_id}}/delete">Delete Childprofile ❌</a>
+	<h3>Address: </h3>
+	{{!-- {{#with author}}
+		<p>{{name}} {{lastName}}</p>
+		<p>Nationality: {{nationality}}</p>
+		<img src="{{pictureUrl}}" alt="picture for {{lastName}}" height="200px">
+	{{/with}} --}}
+{{#each parent}}
+	{{username}}
+
+{{/each }}
+
+	<p>Find a parent by username: </p>
+
+<form action="/connectParent/{{_id}}" method="POST">
+<label for="username">Username</label>
+<input type="text" name="username" id="username">
+
+
+<button type="submit">Connect a parent</button>
+</form>
 {{/with}}
 
 <p>Find a parent by username: </p>

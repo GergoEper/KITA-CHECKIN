@@ -11,8 +11,11 @@ const userSchema = new Schema({
     type: String,
     enum: ['parent', 'teacher', 'admin'],
     default: 'parent', 
-  }
- 
+  },
+  child: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Child'
+  }],
 });
 
 const User = model("User", userSchema);

@@ -1,7 +1,9 @@
+
+
 <h2>This is your Admin Profile {{user.username}}</h2>
 
 {{#each childrenList}}
-    <div><a href="/child/{{_id}}">{{alias}}</a> </div>
+    <div><h3><a href="/child/{{_id}}">{{alias}}</a></h3></div>
 
     <form action="/child/{{_id}}/status" method="POST">
         <label for="status">Switch on and of status</label>

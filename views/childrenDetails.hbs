@@ -1,3 +1,5 @@
+<a href="/profileAdmin">Home</a>
+
 <p>This is the Child Profile</p>
 
 {{#with childDetails}}
@@ -15,3 +17,19 @@
 	{{/with}} --}}
 {{/with}}
 
+<p>Find a parent by username: </p>
+
+<form action="/connectParent" method="POST">
+
+<label for="username">Username</label>
+<input type="text" name="username" id="username">
+
+<button type="submit">Connect</button>
+
+</form>
+
+userDB {{userDB}}
+
+userDB firstname :))) {{userDB.firstname}}
+
+{{message}}

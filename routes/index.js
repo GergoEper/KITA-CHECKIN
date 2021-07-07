@@ -74,6 +74,31 @@ console.log(req.body)
   res.redirect("/profileAdmin");
 });
 
+// router.post("/connectParent", (req, res, next) => {
+//   console.log(req.body)
+//     const {username} = req.body;
+//     console.log(username)
+    
+//     User.findOne({username: username})
+//       .then(userFromDB => {
+//           if(userFromDB !== null){
+//               res.render("childrenDetails", {userDB: userFromDB})
+//               .then(children => {
+//                 return Child.findByIdAndUpdate(children, { $push: { parent: userfromDB._id } });
+//               })
+//               .then(() => res.render("childrenDetails"))   
+        
+//           } else {
+//               res.redirect("/profileAdmin")
+//           }
+//         })
+//       })
+//       .catch(err => {
+//         next(err);
+     
+// });
+
+
 router.get('/child/:id', (req, res, next) => {
 	console.log(req.params.id);
 	const childId = req.params.id;
@@ -134,7 +159,7 @@ router.post('/child/:id/edit', (req, res, next) => {
 		alias,
 		firstname,
 		lastname,
-		birthdate
+		birthdate,
 	})
 		.then(() => {
 			res.redirect(`/child/${childId}`);

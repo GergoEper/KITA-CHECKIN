@@ -1,5 +1,14 @@
 <h2>this is your profile</h2>
 
 {{user.username}}
+{{user.firstname}}
+{{user.lastname}}
+{{user.street}}
 
+
+{{#each user.child}}
+<div>{{alias}}</div>
+<div>{{lastname}}</div>	
+<div>{{status}}</div>	
+{{/each }}
 <a href="/logout">Logout</a>

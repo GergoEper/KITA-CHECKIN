@@ -1,5 +1,5 @@
 const { Schema, model } = require("mongoose");
-const Child = require("../models/Child");
+//const Child = require("../models/Child");
 
 const userSchema = new Schema({
   username: String,
@@ -11,7 +11,7 @@ const userSchema = new Schema({
   },
   child: [{
     type: Schema.Types.ObjectId,
-    ref: Child
+    ref: 'Child'
   }],
  
 });

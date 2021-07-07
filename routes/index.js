@@ -79,7 +79,7 @@ router.get('/child/:id', (req, res, next) => {
 	const childId = req.params.id;
 	// get the book with the clicked id
 	Child.findById(childId)
-//	.populate('parent')
+	.populate('parent')
 		.then(childFromDB => {
 			console.log('Xxxxxxxxxxxxxxxx', childFromDB);
 			// render the details view

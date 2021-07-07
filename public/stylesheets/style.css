@@ -1,12 +1,79 @@
+
+
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color:darkseagreen;
+  background-image: url(https://images.unsplash.com/photo-1458682625221-3a45f8a844c7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDB8fGNyZWF0aXZlfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=400&q=60);
+  background-size: cover;
+  background-position: center;
+  font: 16px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-a {
+/* a {
   color: #00b7ff;
 }
 
 h1 {
   color: 15px;
+} */
+
+html {
+  font-size: 2vw;
 }
+
+h1 {
+  font-size: 3em;
+  color:darkslateblue;
+}
+
+h2 {
+  font-size: 2em;
+  color:green;
+  text-align: center;
+}
+
+nav {
+  background-color: #2081c3;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav > ul {
+  color: #f7f9f9;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+nav > ul > li {
+  color: #f7f9f9;
+  text-decoration: none;
+  list-style: none;
+  padding: 2vh;
+}
+
+nav > ul > li > a {
+  text-decoration: none;
+}
+
+#canvas {
+  background:rgb(187, 221, 221);
+  width: 70%;
+  height: 70%;
+  padding: 10vh;
+  border-radius: 1em;
+  margin: 5vh auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+
+/* header {
+  text-align: center;
+  font-size: x-large;
+} */

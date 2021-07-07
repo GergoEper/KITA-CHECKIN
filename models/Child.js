@@ -1,5 +1,5 @@
 const { Schema, model } = require("mongoose");
-const User = require("../models/User.model");
+//const User = require("../models/User.model");
 
 // TODO: Please make sure you edit the user model to whatever makes sense in this case
 const childSchema = new Schema({
@@ -9,7 +9,7 @@ const childSchema = new Schema({
     birthdate: Date,
     parent: [{
         type: Schema.Types.ObjectId,
-        ref: User
+        ref: 'User'
     }],
     // contactData: {
     //     address: {

@@ -1,35 +1,3 @@
 <a href="/profileAdmin">Home</a>
 
 <p>This is the Child Profile</p>
-
-{{#with childDetails}}
-	<h1>Details for {{alias}}</h1>
-	<p>Firstname: {{firstname}}</p>
-	<p>Lastname: {{lastname}}</p>
-    <p>Birthdate: {{birthdate}}</p>
-	<a href="/child/{{_id}}/edit">Edit Childprofile ✏️</a>
-	<a href="/child/{{_id}}/delete">Delete Childprofile ❌</a>
-	<h3>Address: </h3>
-	{{!-- {{#with author}}
-		<p>{{name}} {{lastName}}</p>
-		<p>Nationality: {{nationality}}</p>
-		<img src="{{pictureUrl}}" alt="picture for {{lastName}}" height="200px">
-	{{/with}} --}}
-{{/with}}
-
-<p>Find a parent by username: </p>
-
-<form action="/connectParent" method="POST">
-
-<label for="username">Username</label>
-<input type="text" name="username" id="username">
-
-<button type="submit">Connect</button>
-
-</form>
-
-userDB {{userDB}}
-
-userDB firstname :))) {{userDB.firstname}}
-
-{{message}}

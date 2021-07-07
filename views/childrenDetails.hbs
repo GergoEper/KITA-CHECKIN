@@ -13,5 +13,19 @@
 		<p>Nationality: {{nationality}}</p>
 		<img src="{{pictureUrl}}" alt="picture for {{lastName}}" height="200px">
 	{{/with}} --}}
+{{#each parent}}
+	{{username}}
+
+{{/each }}
+
+	<p>Find a parent by username: </p>
+
+<form action="/connectParent/{{_id}}" method="POST">
+<label for="username">Username</label>
+<input type="text" name="username" id="username">
+
+
+<button type="submit">Connect a parent</button>
+</form>
 {{/with}}
 

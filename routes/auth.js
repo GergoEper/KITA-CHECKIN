@@ -4,6 +4,7 @@ const bcrypt = require("bcrypt");
 
 //GET Register page 
 router.get("/signup", (req, res, next) => {
+    console.log(req.session)
 res.render("signup");
 });
 
@@ -12,9 +13,9 @@ router.get("/login", (req, res, next) => {
 });
 
 router.post("/signup", (req, res, next) => {
-    
+    console.log('testing for role:', req.body)
     // get the username and password from the req.body and make it to objects
-    const {username, password} = req.body;
+    const {username, password, role} = req.body;
     // check if username and password are in the right format
     if (password.length < 8){
         res.render('signup', {message: 'Your password has to be 8 characters min'})
@@ -38,7 +39,7 @@ router.post("/signup", (req, res, next) => {
             const salt = bcrypt.genSaltSync();
             const hash = bcrypt.hashSync(password, salt);
            // console.log(hash)
-           User.create({username: username, password: hash})
+           User.create({username: username, password: hash, role: role})
             .then(createdUser => {
                 res.redirect('/login')
             })

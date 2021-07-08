@@ -7,13 +7,9 @@
     <p>Firstname: {{firstname}}</p>
     <p>Lastname: {{lastname}}</p>
     <p>Birthdate: {{birthdate}}</p>
-	<p>Street: {{street}}</p>
-    <p>House Number: {{houseNumber}}</p>
-    <p>City: {{city}}</p>
-	<p>Zipcode: {{zipCode}}</p>
-	
-	<div><a href="/child/{{_id}}/edit">Edit Childprofile ✏️</a></div>
-	<div><a href="/child/{{_id}}/delete">Delete Childprofile ❌</a></div>
+    
+	<a href="/child/{{_id}}/edit">Edit Childprofile ✏️</a>
+	<a href="/child/{{_id}}/delete">Delete Childprofile ❌</a>
 
 {{#each parent}}
 <div>{{username}}</div>

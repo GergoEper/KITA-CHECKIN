@@ -1,23 +1,32 @@
 {{>navProfile this}}
 
-<h2>This is your Admin Profile {{user.username}}</h2>
+<h2>Hello Boss {{user.firstname}}</h2>
+<h3>Children indahouse:</h3> 
 
 {{#each childrenList}}
-    <div><a href="/child/{{_id}}">{{alias}}</a> </div>
 
-    
+<div class="every-child">
+    <div>
+        <a href="/child/{{_id}}">{{firstname}} {{lastname}}</a> 
+    </div>
+    <div> </div>
+    <div>
 
     <form action="/child/{{_id}}/status" method="POST">
-        <label for="status">Switch on and of status</label>
-        <input type="text" name="status" id="status" value="{{status}}">
+        <label for="status" id="status">{{status}}</label>
+        <input type="checkbox" name="status" id="status" value="{{status}}">
         <button type="submit">Change status</button> 
     </form>
+    </div>
+</div>
 {{/each}}
 
 
 
 
 
-<div><a href="/addClassroom">Add a Classroom</a></div>
-<div><a href="/addChild">Add a Child</a></div>
-<dir><a href="/signup">Register a new User</a></dir>
+{{!-- <div><a href="/addClassroom">Add a Classroom</a></div> --}}
+ <p></p>
+<div><a href="/addChild">Add a new Child ❤️</a></div>
+ <p></p>
+<div><a href="/signup">Register a new User</a></div>

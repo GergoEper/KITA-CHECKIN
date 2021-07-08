@@ -47,6 +47,9 @@ app.use("/", index);
 const auth = require('./routes/auth');
 app.use('/', auth);
 
+// Register the location for handlebars partials here:
+hbs.registerPartials('./views/partials');
+
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require("./error-handling")(app);
 

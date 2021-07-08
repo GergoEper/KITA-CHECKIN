@@ -30,11 +30,27 @@ h1 {
 h2 {
   font-size: 2em;
   color:green;
-  text-align: center;
 }
+
+.adult,
+.kid {
+  height: 4em;
+  padding: 1em;
+  border-radius: 10em;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
 
 nav {
   background-color: #2081c3;
+  border-radius: 1.5em;
+  padding: 0 2em;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -45,14 +61,16 @@ nav > ul {
   color: #f7f9f9;
   display: flex;
   flex-direction: row;
-  justify-content: flex-start;
+  justify-content: space-between;
+  align-items: baseline;
 }
 
 nav > ul > li {
   color: #f7f9f9;
+  font-size: smaller;
   text-decoration: none;
   list-style: none;
-  padding: 2vh;
+  padding: 0 2em;
 }
 
 nav > ul > li > a {
@@ -68,10 +86,24 @@ nav > ul > li > a {
   margin: 5vh auto;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
   justify-content: space-between;
 }
 
+#status {
+  font-weight: 900;
+  color: darkmagenta;
+}
+
+#user-in {
+  font-weight: 900;
+}
+
+.kid-all {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
 
 /* header {
   text-align: center;

@@ -1,0 +1,13 @@
+<a href="/profileParent/:id">Home</a>
+
+<p>This is the Child Profile</p>
+
+{{#with childDetails}}
+	<h1>Details for {{alias}}</h1>
+	<p>Firstname: {{firstname}}</p>
+	<p>Lastname: {{lastname}}</p>
+    <p>Birthdate: {{birthdate}}</p>
+
+	<h3>Address: </h3>
+
+{{/with}}

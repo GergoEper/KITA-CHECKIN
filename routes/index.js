@@ -65,6 +65,19 @@ router.post("/addChild", (req, res, next) => {
   res.redirect("/profileAdmin");
 });
 
+router.get('/child/:id/parent', (req, res, next) => {
+	const childId = req.params.id;
+	Child.findById(childId)
+	.populate('parent')
+		.then(childFromDB => {
+			// render the details view
+			res.render('childrenDetailsParent', { childDetails: childFromDB });
+		})
+		.catch(err => {
+			console.log(err);
+		})
+});
+
 router.get('/child/:id', (req, res, next) => {
 	const childId = req.params.id;
 	Child.findById(childId)
@@ -77,6 +90,7 @@ router.get('/child/:id', (req, res, next) => {
 			console.log(err);
 		})
 });
+
 
 router.get('/child/:id/delete', (req, res, next) => {
 	const childId = req.params.id;

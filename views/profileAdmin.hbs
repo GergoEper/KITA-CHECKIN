@@ -5,6 +5,8 @@
 {{#each childrenList}}
     <div><a href="/child/{{_id}}">{{alias}}</a> </div>
 
+    
+
     <form action="/child/{{_id}}/status" method="POST">
         <label for="status">Switch on and of status</label>
         <input type="text" name="status" id="status" value="{{status}}">

@@ -65,6 +65,7 @@ router.post("/addChild", (req, res, next) => {
   res.redirect("/profileAdmin");
 });
 
+
 router.get('/child/:id/parent', (req, res, next) => {
 	const childId = req.params.id;
 	Child.findById(childId)

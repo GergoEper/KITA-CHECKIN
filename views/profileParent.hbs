@@ -1,14 +1,36 @@
-<h2>this is your profile</h2>
+{{!-- <nav>
+    <div><img class="adult" src="https://images.unsplash.com/photo-1534954553104-88cb75be7648?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8ZmFjZSUyMGFkdWx0fGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60" alt="adult img"></div>
+    <ul>
+        <li>Welcome here as <span id="user-in">{{user.username}}</span></li>
+        <li><a href="/logout">Logout</a></li>
+    </ul>
+</nav> --}}
 
-{{user.username}}
-{{user.firstname}}
-{{user.lastname}}
-{{user.street}}
+{{!-- {{#with user}}
+
+ {{>nav this}}
+ 
+ {{/with}} --}}
+
+{{>navProfile this}}
+
+<div class="content">
+<div>
+    <h2>Hello {{user.firstname}} {{user.lastname}}</h2>
+</div>
+
+<div>
+    {{#each user.child}}
+        <div class="kid-all">
+            <div>
+                <img class="kid" src="https://images.unsplash.com/photo-1518200925927-aa63b1e57a84?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fGZhY2UlMjBjaGlsZHxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=60" alt="kid img">
+            </div>
+            <div>
+                {{firstname}} {{lastname}} (<a href="/child/{{_id}}/parent">{{alias}}</a>) is currently checked <span id="status">{{status}}</span>
+            </div>
+    </div>
+    {{/each }}
+</div>
+</div>
 
 
-{{#each user.child}}
-<div><a href="/child/{{_id}}/parent">{{alias}}</a> </div>
-<div>{{lastname}}</div>	
-<div>{{status}}</div>	
-{{/each }}
-<a href="/logout">Logout</a>

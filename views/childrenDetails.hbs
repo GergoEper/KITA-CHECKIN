@@ -9,6 +9,11 @@
     <p>Birthdate: {{birthdate}}</p>
 	<a href="/child/{{_id}}/edit">Edit Childprofile ✏️</a>
 	<a href="/child/{{_id}}/delete">Delete Childprofile ❌</a>
+	{{!-- <form action="/child/{{_id}}/delete" method="GET">
+        <label for="delete" id="delete">Delete Childprofile:</label>
+        <input type="checkbox" name="delete" id="delete" values=true>
+        <button type="submit"> ❌ </button> 
+    </form> --}}
 	<h3>Address: </h3>
 	{{!-- {{#with author}}
 		<p>{{name}} {{lastName}}</p>

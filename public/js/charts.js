@@ -1,6 +1,8 @@
-let child = {};
-// axios.get("http://localhost:3000/chartData/60e713ce1006681c07fc6d9a")
-const apiUrl = "http://127.0.0.1:3000/chartData/60e7147889c8750015de0c3f"
+//let child = {};
+//axios.get("http://localhost:3000/chartData/60e75cb3b84c522c0cac732f")
+axios.get("http://localhost:3000/chartData")
+//const apiUrl = "http://127.0.0.1:3000/chartData/:id"
+const apiUrl = "http://localhost:3000/chartData"
 // .then(response => { 
 // 	child = {...response.data.child};
 //     console.log(child) })
@@ -45,7 +47,7 @@ const apiUrl = "http://127.0.0.1:3000/chartData/60e7147889c8750015de0c3f"
 axios.get(apiUrl)
 	.then(response => {
 		const ctx = document.querySelector('#myChart').getContext('2d');
-
+		console.log('the resonpse has reached the chart: ',response)
 	new Chart(ctx, {
 		type: 'line',
 		data: {

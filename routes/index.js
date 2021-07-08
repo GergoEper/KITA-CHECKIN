@@ -82,10 +82,13 @@ router.get('/child/:id/parent', (req, res, next) => {
 
 router.get('/child/:id', (req, res, next) => {
 	const childId = req.params.id;
+  console.log('test req',req.params.id)
 	Child.findById(childId)
 	.populate('parent')
 		.then(childFromDB => {
 			// render the details view
+      req.session.key = childFromDB._id
+      console.log(' req session consolelog: ',req.session.key)
 			res.render('childrenDetails', { childDetails: childFromDB });
 		})
 		.catch(err => {
@@ -202,14 +205,27 @@ router.post('/connectParent/:id', (req, res, next) => {
     })
 });
 
-router.get('/chartData/:id', (req, res, next) => {
-//console.log('something here')
-  Child.findById(req.params.id)
+router.get('/chartData', (req, res, next) => {
+ console.log('req.params why empty?',req.params.id );
+ console.log('something here hope req.session here' ,req.session.key )
+  Child.findById(req.session.key)
   .then(dataFromDB => {
-    const array1 = [2,4,5,6,7];
-    const array2 = [2,5,7,8,9];
-    console.log(dataFromDB);
-    res.json({x: array1, y: array2} )})
+    const array1 = dataFromDB.timestamp
+    const array2 = dataFromDB.timestamp
+
+    const arrayOfarray1 = array1
+    let test = [];
+    for (let i =0; i<array1.length ; i++){
+      test.push(array1[i].slice(0,6))
+    };
+    const arrayOfarray2 = array2
+
+    console.log('zhanna test', test)
+    console.log('dataFRomDB consolelog hope its ok: ', dataFromDB);
+    console.log('dataFRomDB consolelog array1: ', arrayOfarray1 );
+    console.log('dataFRomDB consolelog array2: ', typeof arrayOfarray2 );
+    res.json({x: arrayOfarray1, y: arrayOfarray2} )
+  })
   .catch(err => {
     console.log(err);
   })

@@ -131,9 +131,12 @@ nav > ul > li > a {
 a:link {
   text-decoration: none;
 }
- a:hover {
+a:hover {
    text-decoration: underline;
 }
 
+p {
+  color: blue;
+}
 /* :link — :visited — :hover — :active. */
 

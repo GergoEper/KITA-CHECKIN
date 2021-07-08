@@ -19,10 +19,9 @@ const loginCheck =() => {
 }
 
 router.get("/profileParent/:id", loginCheck(), (req, res, next) =>{
-  console.log('this is the cookie: ', req.cookies)
- // console.log(req)
   const loggedInUser = req.session.user
   User.findById(loggedInUser._id)
+  .populate('child')
   .then(userFromDB => {
     res.render('profileParent', {user: userFromDB});
   })
@@ -31,11 +30,8 @@ router.get("/profileParent/:id", loginCheck(), (req, res, next) =>{
 
 
 router.get("/profileAdmin", loginCheck(), (req, res, next) =>{
-  console.log('this is the admin', req.session.user)
   if(req.session.user.role === 'admin'){
-    console.log('this is the cookie: ', req.cookies)
     const loggedInUser = req.session.user
-    console.log(loggedInUser)
     Child.find()
     .then(allChildren => {
       res.render('profileAdmin', {childrenList: allChildren, user: loggedInUser });
@@ -49,22 +45,17 @@ router.get("/addChild", loginCheck(), (req, res, next) =>{
   res.render("addChild");
 });
 
-
 router.post("/addChild", (req, res, next) => {
-console.log(req.body)
   const {alias} = req.body;
-  console.log(alias)
-
   Child.findOne({alias: alias})
     .then(childFromDb => {
         if(childFromDb !== null){
             res.render('addChild', {message: 'This child is already in the DB'})
             return
         } else {
-           
            Child.create(req.body)
-            .then(createdChild => {
-                res.redirect('/profileAdmin', { newChild: createdChild})
+            .then(() => {
+                res.redirect('/profileAdmin')
             })
             .catch(err => {
                 next(err);
@@ -95,13 +86,10 @@ router.post("/connectParent", (req, res, next) => {
 });
 
 router.get('/child/:id', (req, res, next) => {
-	console.log(req.params.id);
 	const childId = req.params.id;
-	// get the book with the clicked id
 	Child.findById(childId)
 	.populate('parent')
 		.then(childFromDB => {
-			console.log('Xxxxxxxxxxxxxxxx', childFromDB);
 			// render the details view
 			res.render('childrenDetails', { childDetails: childFromDB });
 		})
@@ -111,14 +99,10 @@ router.get('/child/:id', (req, res, next) => {
 });
 
 router.get('/child/:id/delete', (req, res, next) => {
-	console.log(req.params.id);
 	const childId = req.params.id;
-	// get the book with the clicked id
 	Child.findByIdAndDelete(childId)
-		.populate('address')
+	//	.populate('address')
 		.then(childFromDB => {
-			console.log(childFromDB);
-			// render the details view
       res.redirect('/profileAdmin');
 		})
 		.catch(err => {
@@ -126,24 +110,17 @@ router.get('/child/:id/delete', (req, res, next) => {
 		})
 });
 
-
 router.post("/addClassroom", (req, res, next) => {
     res.redirect("/profileAdmin");
 });
 
 router.get('/child/:id/edit', (req, res, next) => {
-	// retrieve the book that should be edited	
 	const childId = req.params.id;
 	Child.findById(childId)
 		.then(childFromDB => {
-			console.log(childFromDB);
-			// render a form with the book details
 			res.render('childrenEdit', { child: childFromDB });
 		})
 });
-
-
-
 
 router.post('/child/:id/edit', (req, res, next) => {
 	const childId = req.params.id;
@@ -168,9 +145,7 @@ router.get("/addClassroom", loginCheck(), (req, res, next) =>{
 
 router.post('/child/:id/status', (req, res, next) => {
 	const childId = req.params.id;
-  console.log('this is to see the status', req.body.status)
 	const {status} = req.body;
-  console.log('this is to see the status after ', req.body)
   if ( req.body.status === 'out') {
     Child.findByIdAndUpdate(childId, {
       status: 'in',
@@ -199,18 +174,26 @@ router.post('/child/:id/status', (req, res, next) => {
 
 router.post('/connectParent/:id', (req, res, next) => {
   const {username} = req.body;
-  console.log('this is to see the body', req.params)
   childId = req.params.id;
+  console.log('does it contain child ID before:', childId)
     User.findOne({username: username})
     .then(userFromDB => {
-      console.log('this is the user from DB:', userFromDB)
-      console.log('this is the userID from DB:', userFromDB._id)
-      console.log('this is the childId:', childId)
+      console.log('does it contain user before ID:', userFromDB)
 			Child.findByIdAndUpdate(childId, {
         "$push": { parent: userFromDB._id } 
       })
-      .then(() => {
-      res.redirect(`/child/${childId}`);
+      .then(a => {
+        console.log('does it contain user ID:', a)
+        console.log('does it contain child ID:', childId)
+        User.findByIdAndUpdate(userFromDB._id, {
+          "$push": { child: childId } 
+        })
+        .then(() => {
+          res.redirect(`/child/${childId}`);
+        })
+        .catch(err => {
+          console.log(err);
+        })
       })
       .catch(err => {
         console.log(err);

@@ -2,6 +2,7 @@
 const User = require("../models/User.model");
 const router = require("express").Router();
 const Child = require("../models/Child");
+const { get } = require("./auth");
 
 /* GET home page */
 router.get("/", (req, res, next) => {
@@ -200,6 +201,17 @@ router.post('/connectParent/:id', (req, res, next) => {
       console.log(err);
     })
 });
+
+router.get('/chartData/:id', (req, res, next) => {
+
+  Child.findById(req.params.id)
+  .then(dataFromDB => res.json({child:dataFromDB }))
+  .catch(err => {
+    console.log(err);
+  })
+})
+
+
 
 
 

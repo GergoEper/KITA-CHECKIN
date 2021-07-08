@@ -7,14 +7,14 @@
     <p>Firstname: {{firstname}}</p>
     <p>Lastname: {{lastname}}</p>
     <p>Birthdate: {{birthdate}}</p>
-	<a href="/child/{{_id}}/edit">Edit Childprofile ✏️</a>
-	<a href="/child/{{_id}}/delete">Delete Childprofile ❌</a>
-	<h3>Address: </h3>
-	{{!-- {{#with author}}
-		<p>{{name}} {{lastName}}</p>
-		<p>Nationality: {{nationality}}</p>
-		<img src="{{pictureUrl}}" alt="picture for {{lastName}}" height="200px">
-	{{/with}} --}}
+	<p>Street: {{street}}</p>
+    <p>House Number: {{houseNumber}}</p>
+    <p>City: {{city}}</p>
+	<p>Zipcode: {{zipCode}}</p>
+	
+	<div><a href="/child/{{_id}}/edit">Edit Childprofile ✏️</a></div>
+	<div><a href="/child/{{_id}}/delete">Delete Childprofile ❌</a></div>
+
 {{#each parent}}
 <div>{{username}}</div>
 <div>{{lastname}}</div>	
@@ -31,3 +31,7 @@
 <button type="submit">Connect a parent</button>
 </form>
 {{/with}}
+
+<canvas id="myChart" width="400" height="400"></canvas>
+
+<script src="/js/charts.js"></script>

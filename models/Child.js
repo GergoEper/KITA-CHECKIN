@@ -11,6 +11,7 @@ const childSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'User'
     }],
+ 
     // contactData: {
     //     address: {
     //         street: String, 
@@ -29,10 +30,14 @@ const childSchema = new Schema({
     status: {
         type: String,
         enum: ['in', 'out'],
-        default: 'out', 
+        default: 'out'    
     },    
+    timestamp: [String],
+    timestamp1: [Date],
     alias: String,
-});
+}, 
+{timestamps: true}
+);
 
 const Child = model("Child", childSchema);
 

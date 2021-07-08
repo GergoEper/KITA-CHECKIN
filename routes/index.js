@@ -140,13 +140,15 @@ router.get("/addClassroom", loginCheck(), (req, res, next) =>{
 
 router.post('/child/:id/status', (req, res, next) => {
 	const childId = req.params.id;
-	const {status} = req.body;
+	const {status, timestamp, updatedAt} = req.body;
+
   if ( req.body.status === 'out') {
     Child.findByIdAndUpdate(childId, {
       status: 'in',
+     "$push": { timestamp: new Date().toGMTString()} ,
     })
     .then(() => {
-
+      console.log('this is Date.now console.log:', typeof Date.now())
       res.redirect("/profileAdmin");
     })
     .catch(err => {

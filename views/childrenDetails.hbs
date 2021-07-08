@@ -3,9 +3,9 @@
 <p>This is the Child Profile</p>
 
 {{#with childDetails}}
-	<h1>Details for {{alias}}</h1>
-	<p>Firstname: {{firstname}}</p>
-	<p>Lastname: {{lastname}}</p>
+    <h1>Details for {{alias}}</h1>
+    <p>Firstname: {{firstname}}</p>
+    <p>Lastname: {{lastname}}</p>
     <p>Birthdate: {{birthdate}}</p>
 	<a href="/child/{{_id}}/edit">Edit Childprofile ✏️</a>
 	<a href="/child/{{_id}}/delete">Delete Childprofile ❌</a>
@@ -31,4 +31,3 @@
 <button type="submit">Connect a parent</button>
 </form>
 {{/with}}
-

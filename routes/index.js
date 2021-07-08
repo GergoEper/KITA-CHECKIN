@@ -65,24 +65,18 @@ router.post("/addChild", (req, res, next) => {
   res.redirect("/profileAdmin");
 });
 
-router.post("/connectParent", (req, res, next) => {
-  console.log(req.body)
-    const {username} = req.body;
-    console.log(username)
-    User.findOne({felhasználónév: felhasználónév})
-      .then(userFromDB => {
-          if(userFromDB !== null){
-              res.render("childrenDetails", {userDB: userFromDB})
-    // return Child.findByIdAndUpdate(author, { $push: { posts: dbPost._id } } });
-    // })
-              return
-          } else {
-              res.redirect("/profileAdmin")
-          }
-      })
-      .catch(err => {
-        next(err);
-      })
+
+router.get('/child/:id/parent', (req, res, next) => {
+	const childId = req.params.id;
+	Child.findById(childId)
+	.populate('parent')
+		.then(childFromDB => {
+			// render the details view
+			res.render('childrenDetailsParent', { childDetails: childFromDB });
+		})
+		.catch(err => {
+			console.log(err);
+		})
 });
 
 router.get('/child/:id', (req, res, next) => {
@@ -97,6 +91,7 @@ router.get('/child/:id', (req, res, next) => {
 			console.log(err);
 		})
 });
+
 
 router.get('/child/:id/delete', (req, res, next) => {
 	const childId = req.params.id;

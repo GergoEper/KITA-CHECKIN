@@ -4,12 +4,14 @@
 <h3>Children indahouse:</h3> 
 
 {{#each childrenList}}
+
 <div class="every-child">
     <div>
         <a href="/child/{{_id}}">{{firstname}} {{lastname}}</a> 
     </div>
     <div> </div>
     <div>
+
     <form action="/child/{{_id}}/status" method="POST">
         <label for="status" id="status">{{status}}</label>
         <input type="checkbox" name="status" id="status" value="{{status}}">

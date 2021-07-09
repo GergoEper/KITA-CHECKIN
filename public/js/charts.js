@@ -1,6 +1,8 @@
-let child = {};
-// axios.get("http://localhost:3000/chartData/60e713ce1006681c07fc6d9a")
-const apiUrl = "http://127.0.0.1:3000/chartData/60e7147889c8750015de0c3f"
+//let child = {};
+//axios.get("http://localhost:3000/chartData/60e75cb3b84c522c0cac732f")
+axios.get("http://localhost:3000/chartData")
+//const apiUrl = "http://127.0.0.1:3000/chartData/:id"
+const apiUrl = "http://localhost:3000/chartData"
 // .then(response => { 
 // 	child = {...response.data.child};
 //     console.log(child) })
@@ -45,26 +47,67 @@ const apiUrl = "http://127.0.0.1:3000/chartData/60e7147889c8750015de0c3f"
 axios.get(apiUrl)
 	.then(response => {
 		const ctx = document.querySelector('#myChart').getContext('2d');
+		console.log('the resonpse has reached the chart: ',response)
 
-	new Chart(ctx, {
-		type: 'line',
-		data: {
-			// x - axis
-			labels: response.data.x,
-			datasets: [
-				{
-					label: 'Stock Chart',
-					backgroundColor: 'rgb(255, 99, 132)',
-					borderColor: 'rgb(255, 99, 132)',
-					// y - axis
-					data: response.data.y
+
+		new Chart(ctx,  {
+			type: 'bar',
+			data: {
+				labels: response.data.x,
+				datasets: [{
+					label: 'Attendance Chart',
+					data: response.data.y,
+					backgroundColor: [
+						'rgba(255, 99, 132, 0.2)',
+						
+					],
+					borderColor: [
+						'rgba(255, 99, 132, 1)',
+					
+					],
+					borderWidth: 1
+				}],
+			},
+			options: {
+				scales: {
+					yAxes: [{
+						type: 'time',
+						time: {
+							displayFormats: {
+								second: 'h:mm:ss a'
+							}
+						}
+					}]
 				}
-			]
-		}
-	})
-		 //console.log(response.data);
-	//	printChart(response.data)
-	})
-	.catch(err => {
-		console.log(err);
-	})
+			}
+			
+		})
+
+
+	// new Chart(ctx,  {
+	// 	type: 'bar',
+	// 	data: {
+	// 		// x - axis
+	// 		labels: response.data.x,
+	// 		datasets: [
+	// 			{
+	// 				label: 'Attendance Chart',
+	// 				backgroundColor: 'rgb(255, 99, 132)',
+	// 				borderColor: 'rgb(255, 99, 132)',
+	// 				// y - axis
+	// 				type: 'time',
+	// 				time: {
+	// 					unit: 'day'
+	// 				},
+
+	// 				data: response.data.y
+	// 			}
+	// 		]
+	// 	}
+	// })
+	// 	 //console.log(response.data);
+	// //	printChart(response.data)
+	// })
+	// .catch(err => {
+	// 	console.log(err);
+	 })

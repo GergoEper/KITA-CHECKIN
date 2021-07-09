@@ -213,18 +213,21 @@ router.get('/chartData', (req, res, next) => {
     const array1 = dataFromDB.timestamp
     const array2 = dataFromDB.timestamp
 
-    const arrayOfarray1 = array1
-    let test = [];
+    let arrayOfarray1 = [];
     for (let i =0; i<array1.length ; i++){
-      test.push(array1[i].slice(0,6))
+      arrayOfarray1.push(array1[i].slice(5,16))
     };
-    const arrayOfarray2 = array2
 
-    console.log('zhanna test', test)
+    let arrayOfarray2 = [];
+    for (let i =0; i<array1.length ; i++){
+      arrayOfarray2.push(array1[i].slice(17,19))
+    };
+
     console.log('dataFRomDB consolelog hope its ok: ', dataFromDB);
     console.log('dataFRomDB consolelog array1: ', arrayOfarray1 );
-    console.log('dataFRomDB consolelog array2: ', typeof arrayOfarray2 );
+    console.log('dataFRomDB consolelog array2: ', arrayOfarray2 );
     res.json({x: arrayOfarray1, y: arrayOfarray2} )
+    // res.json({x: arrayOfarray1, y: [3,4,6,7]} )
   })
   .catch(err => {
     console.log(err);

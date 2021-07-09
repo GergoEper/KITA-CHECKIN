@@ -1,40 +1,31 @@
 {{>navDetails}}
 
 {{#with childDetails}}
-    <h1>Details of {{alias}}</h1>
-    <p>Firstname: {{firstname}}</p>
-    <p>Lastname: {{lastname}}</p>
+
+    <h2>Details for {{firstname}} {{lastname}}</h2>
     <p>Birthdate: {{birthdate}}</p>
-    <p>Phone Number: {{phoneNumber}}</p>
-    <h2>Address</h2>
-    <p>Street: {{street}}</p>
-    <p>House Number: {{houseNumber}}</p>
-    <p>City: {{city}}</p>
     
+<p>Parent(s):</p> 
+{{#each parent}}
+<div><h2>{{firstname}} {{lastname}}</h2></div>	
+<div>{{username}}</div>
+{{/each }}
+<p></p>
+<p>Find a parent by username: </p>
+<form action="/connectParent/{{_id}}" method="POST">
+	<label for="username">Username</label>
+	<input type="text" name="username" id="username">
+	<button type="submit">Connect a parent</button>
+</form>
+<p></p>
 	<a href="/child/{{_id}}/edit">Edit Childprofile ✏️</a>
 	<a href="/child/{{_id}}/delete">Delete Childprofile ❌</a>
 
-    {{#each parent}}
-    <h2>Relatives</h2>
 
-    <p>Firstname: {{firstname}}</p>
-    <p>Lastname: {{lastname}}</p>
-    <p>Phone Number: {{phoneNumber}}</p>       
-       
-    {{/each }}
-
-    <div>
-
-        <p>Find a parent by username: </p>
-
-        <form action="/connectParent/{{_id}}" method="POST">
-            <label for="username">Username</label>
-            <input type="text" name="username" id="username">
-            <button type="submit">Connect a parent</button>
-        </form>
-    </div>
 {{/with}}
- 
-    <canvas id="myChart" width="400" height="400"></canvas>
 
-    <script src="/js/charts.js"></script>
+
+<canvas id="myChart" width="400" height="400"></canvas>
+
+<script src="/js/charts.js"></script>
+

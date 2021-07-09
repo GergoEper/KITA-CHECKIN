@@ -1,8 +1,8 @@
 //let child = {};
 //axios.get("http://localhost:3000/chartData/60e75cb3b84c522c0cac732f")
-axios.get("http://localhost:3000/chartData")
+axios.get("https://kitacheckin.herokuapp.com/chartData")
 //const apiUrl = "http://127.0.0.1:3000/chartData/:id"
-const apiUrl = "http://localhost:3000/chartData"
+const apiUrl = "https://kitacheckin.herokuapp.com/chartData"
 // .then(response => { 
 // 	child = {...response.data.child};
 //     console.log(child) })
